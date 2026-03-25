@@ -4,7 +4,22 @@
   <title>Football Manager</title>
 </head>
 <body>
+
   <h1>🚀 My Football Manager Game</h1>
-  <p>Първата версия е онлайн!</p>
+
+  <button onclick="playMatch()">Play Match ⚽</button>
+
+  <h2 id="result"></h2>
+
+  <script>
+    function playMatch() {
+      let teamA = Math.floor(Math.random() * 5);
+      let teamB = Math.floor(Math.random() * 5);
+
+      document.getElementById("result").innerText =
+        "Result: " + teamA + " : " + teamB;
+    }
+  </script>
+
 </body>
 </html>
