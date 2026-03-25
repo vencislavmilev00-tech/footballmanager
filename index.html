@@ -5,28 +5,88 @@
 </head>
 <body>
 
-  <h1>🚀 My Football Manager Game</h1>
+  <h1>🚀 Football Manager</h1>
 
   <button onclick="playMatch()">Play Match ⚽</button>
 
   <h2 id="result"></h2>
 
-  <h3>Match History:</h3>
-  <ul id="history"></ul>
+  <h3>League Table:</h3>
+
+  <table border="1">
+    <tr>
+      <th>Team</th>
+      <th>P</th>
+      <th>W</th>
+      <th>D</th>
+      <th>L</th>
+      <th>Pts</th>
+    </tr>
+    <tr id="teamA">
+      <td>Team A</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr id="teamB">
+      <td>Team B</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </table>
 
   <script>
+    let teamA = {P:0, W:0, D:0, L:0, Pts:0};
+    let teamB = {P:0, W:0, D:0, L:0, Pts:0};
+
     function playMatch() {
-      let teamA = Math.floor(Math.random() * 5);
-      let teamB = Math.floor(Math.random() * 5);
+      let scoreA = Math.floor(Math.random() * 5);
+      let scoreB = Math.floor(Math.random() * 5);
 
-      let resultText = "Result: " + teamA + " : " + teamB;
+      document.getElementById("result").innerText =
+        "Result: " + scoreA + " : " + scoreB;
 
-      document.getElementById("result").innerText = resultText;
+      teamA.P++;
+      teamB.P++;
 
-      let li = document.createElement("li");
-      li.innerText = resultText;
+      if (scoreA > scoreB) {
+        teamA.W++;
+        teamA.Pts += 3;
+        teamB.L++;
+      } else if (scoreB > scoreA) {
+        teamB.W++;
+        teamB.Pts += 3;
+        teamA.L++;
+      } else {
+        teamA.D++;
+        teamB.D++;
+        teamA.Pts += 1;
+        teamB.Pts += 1;
+      }
 
-      document.getElementById("history").appendChild(li);
+      updateTable();
+    }
+
+    function updateTable() {
+      let a = document.getElementById("teamA").children;
+      let b = document.getElementById("teamB").children;
+
+      a[1].innerText = teamA.P;
+      a[2].innerText = teamA.W;
+      a[3].innerText = teamA.D;
+      a[4].innerText = teamA.L;
+      a[5].innerText = teamA.Pts;
+
+      b[1].innerText = teamB.P;
+      b[2].innerText = teamB.W;
+      b[3].innerText = teamB.D;
+      b[4].innerText = teamB.L;
+      b[5].innerText = teamB.Pts;
     }
   </script>
 
