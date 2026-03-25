@@ -11,13 +11,22 @@
 
   <h2 id="result"></h2>
 
+  <h3>Match History:</h3>
+  <ul id="history"></ul>
+
   <script>
     function playMatch() {
       let teamA = Math.floor(Math.random() * 5);
       let teamB = Math.floor(Math.random() * 5);
 
-      document.getElementById("result").innerText =
-        "Result: " + teamA + " : " + teamB;
+      let resultText = "Result: " + teamA + " : " + teamB;
+
+      document.getElementById("result").innerText = resultText;
+
+      let li = document.createElement("li");
+      li.innerText = resultText;
+
+      document.getElementById("history").appendChild(li);
     }
   </script>
 
